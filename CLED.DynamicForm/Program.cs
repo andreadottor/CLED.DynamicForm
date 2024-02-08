@@ -1,5 +1,7 @@
 ﻿
+using CLED.DynamicForm;
 using CLED.DynamicForm.Questions;
+using Spectre.Console;
 
 var questions = new List<IQuestion>();
 var answers = new Dictionary<int, string>();
@@ -26,6 +28,13 @@ brotherQuestion.Id = 4;
 brotherQuestion.Text = "inserire numero di fratelli";
 questions.Add(brotherQuestion);
 
+var colorQuestion = new MultipleQuestion();
+colorQuestion.Id = 5;
+colorQuestion.Text = "Qual'è il tuo colore preferito";
+colorQuestion.Answers.Add("rosso");
+colorQuestion.Answers.Add("blu");
+colorQuestion.Answers.Add("verde");
+questions.Add(colorQuestion);
 
 
 // TODO: erogo il sondaggio
