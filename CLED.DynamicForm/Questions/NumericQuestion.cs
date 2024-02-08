@@ -1,29 +1,25 @@
-﻿
+﻿namespace CLED.DynamicForm.Questions;
 
-namespace CLED.DynamicForm.Questions
+class NumericQuestion : IQuestion
 {
-    class NumericQuestion : IQuestion
+    public int Id { get; set; }
+
+    public string? Text { get; set; }
+    public bool IsRequired { get; set; }
+
+    public string Ask()
     {
-        public int Id { get; set; }
+        Console.WriteLine(Text);
+        var answer = Console.ReadLine();
 
-        public string? Text { get; set; }
-        public bool IsRequired { get; set; }
-
-        public string Ask()
+        while ((IsRequired && string.IsNullOrEmpty(answer)) 
+                || !int.TryParse(answer, out _))
         {
-            Console.WriteLine(Text);
-            var answer = Console.ReadLine();
-            var isNumber = int.TryParse(answer, out int number);
-
-            while ((IsRequired && string.IsNullOrEmpty(answer)) || !isNumber)
-            {
-                Console.WriteLine("Rinserire l'input o Dato obbligatorio");
-                answer = Console.ReadLine();
-                isNumber = int.TryParse(answer, out number);
-            }
-
-            return answer ?? string.Empty;
-
+            Console.WriteLine("Rinserire l'input o Dato obbligatorio");
+            answer = Console.ReadLine();
         }
+
+        return answer ?? string.Empty;
+
     }
 }
